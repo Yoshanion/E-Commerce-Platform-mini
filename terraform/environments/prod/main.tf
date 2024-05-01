@@ -18,3 +18,13 @@ module "eks" {
     min_size     = 1
   } 
 }
+
+module "rds" {
+  source = "../../modules/rds"
+  db_instance_class = "db.t3.medium"
+  db_name           = "ecommerce"
+  db_username       = "admin"
+  db_password       = "admin"
+  vpc_security_group_ids = [module.vpc.default_security_group_id]
+  db_subnet_group_name = "my-db-subnet-group"
+}
