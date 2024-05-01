@@ -35,3 +35,9 @@ module "s3_assets" {
   environment = "prod" 
 }
 
+module "cloudfront" {
+  source = "../../modules/cloudfront"
+  origin_bucket_name = module.s3_assets.s3_bucket_name
+  comment            = "CDN for global e-commerce assets"
+  price_class        = "PriceClass_100"
+}
