@@ -18,11 +18,11 @@ resource "aws_internet_gateway" "igw" {
 
 #Public
 
-resource "aws_subnets" "public" {
+resource "aws_subnet" "public" {
     count   = length(var.availability_zones)
     vpc_id  = aws_vpc.main.id
     cidr_block = cidrsubnet(var.cidr_block, 8, count.index)
-    availability_zones = var.availability_zones[count.index]
+    availability_zone = var.availability_zones[count.index]
     map_public_ip_on_launch = true 
     
     tags = {
@@ -36,7 +36,7 @@ resource "aws_route_table" "public" {
 
 resource "aws_route" "internet_access" {
    route_table_id         = aws_route_table.public.id
-   description_cidr_block = "0.0.0.0/0"
+   destination_cidr_block = "0.0.0.0/0"
    gateway_id             = aws_internet_gateway.igw.id
 }
 
