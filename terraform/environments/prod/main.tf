@@ -28,3 +28,10 @@ module "rds" {
   vpc_security_group_ids = [module.vpc.default_security_group_id]
   db_subnet_group_name = "my-db-subnet-group"
 }
+
+module "s3_assets" {
+  source      = "../../modules/s3"
+  bucket_name = "ecommerce-assets"
+  environment = "prod" 
+}
+
