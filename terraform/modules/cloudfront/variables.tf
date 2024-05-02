@@ -6,7 +6,7 @@ variable "origin_bucket_name" {
 variable "origin_path" {
   type        = string
   default     = ""
-  description = "The path within the S3 bucket to use as the origin path"
+  description = "The path within the S3 bucket  to use as the origin path"
 }
 
 variable "comment" {
